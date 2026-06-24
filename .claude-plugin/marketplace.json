@@ -1,0 +1,17 @@
+{
+  "name": "quantum-harmony",
+  "owner": {
+    "name": "Quantum Harmony LLC"
+  },
+  "plugins": [
+    {
+      "name": "artemis-transmission-protocol",
+      "source": "./plugins/artemis-transmission-protocol",
+      "description": "Structured agent-to-agent communication via the Artemis Transmission Protocol (ATP).",
+      "version": "1.1.0",
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
+    }
+  ]
+}
