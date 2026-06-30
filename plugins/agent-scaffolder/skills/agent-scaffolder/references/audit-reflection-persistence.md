@@ -6,6 +6,7 @@ place to keep them.** Pick the persistence tier first, then add only the layers 
 can support.
 
 ## Contents
+
 1. Persistence tiers in depth
 2. Reflection patterns
 3. Audit & provenance integration (atp-provenance-logging)
@@ -40,18 +41,21 @@ provenance service (or a database) is External.
 Define reflection on three axes — trigger, content, destination.
 
 **Trigger**
+
 - *Always:* after every major output, a one-sentence self-check. This needs no
   persistence and belongs even in ephemeral agents.
 - *Cadence (persistent only):* every N actions (e.g., 50) or every T hours (e.g., 12).
   Mirrors a monitoring agent's summary routine.
 
 **Content**
+
 - What was attempted.
 - Whether assumptions were necessary (and which).
 - Whether anything drifted from the mission or boundaries.
 - For audit agents: a rollup of events by severity since the last summary.
 
 **Destination**
+
 - Ephemeral/Session → inline in the response (or a session-end note).
 - File-based → append to a reflection/summary log (e.g., `logs/reflection.md`).
 - External → write a reflection record (and, with provenance, a line item).
