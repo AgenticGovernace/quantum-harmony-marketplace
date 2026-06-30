@@ -8,10 +8,22 @@
       "name": "artemis-transmission-protocol",
       "source": "./plugins/artemis-transmission-protocol",
       "description": "Structured agent-to-agent communication via the Artemis Transmission Protocol (ATP).",
-      "version": "1.1.0",
-      "author": {
-        "name": "Quantum Harmony LLC"
-      }
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
+    },
+    {
+      "name": "atp-provenance-logging",
+      "source": "./plugins/atp-provenance-logging",
+      "description": "Line-item action provenance for ATP agents (parent + child prov_id in agent_logs; halt-and-alert on log failure).",
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
+    },
+    {
+      "name": "agent-scaffolder",
+      "source": "./plugins/agent-scaffolder",
+      "description": "Scaffold AI agents from an Agent Card; generates system prompts and index.md / AGENTS.md / .codex/instructions.md.",
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
     }
   ]
 }

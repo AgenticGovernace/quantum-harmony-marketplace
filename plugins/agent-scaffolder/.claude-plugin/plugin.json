@@ -1,0 +1,18 @@
+{
+  "name": "agent-scaffolder",
+  "version": "1.0.0",
+  "description": "Scaffold AI agents from an Agent Card (Role, Mission, Output Standards, Escalation, Memory, Reflection, Audit): generates system prompts and index.md / AGENTS.md / .codex/instructions.md, gating memory, reflection, and audit on real runtime persistence.",
+  "author": {
+    "name": "Quantum Harmony LLC"
+  },
+  "homepage": "https://artemiscity.com",
+  "license": "Apache-2.0",
+  "keywords": [
+    "agent",
+    "scaffolding",
+    "agent-card",
+    "system-prompt",
+    "multi-agent",
+    "agents-md"
+  ]
+}
