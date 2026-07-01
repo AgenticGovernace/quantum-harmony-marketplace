@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
-.DS_Store
+.DS_Store/*
+plugins/.DS_Store
+plugins/ramble-on/mcp/.DS_Store
+plugins/ramble-on/.DS_Store
