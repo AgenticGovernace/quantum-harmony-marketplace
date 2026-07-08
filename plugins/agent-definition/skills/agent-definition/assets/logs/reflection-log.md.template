@@ -1,0 +1,22 @@
+# Reflection Log — [AGENT NAME]
+
+Cadence summaries appended every [N] actions or at task end. [AGENT NAME] reads this file
+back at the start of a task as memory. Newest entries at the bottom.
+
+Format per entry:
+
+```
+## <date> — <task short name>
+- Attempted: <what>
+- Assumptions: <any necessary assumptions, or "none">
+- Drift check: <stayed within mission/boundaries + inherited governance? note drift>
+- Open threads: <unfinished items, or "none">
+```
+
+---
+
+## [date] — scaffold
+- Attempted: agent card created; no work performed yet.
+- Assumptions: none.
+- Drift check: within boundaries and inherited governance.
+- Open threads: none.

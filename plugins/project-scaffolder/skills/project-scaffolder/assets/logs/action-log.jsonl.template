@@ -1,0 +1,1 @@
+{"ts":"[ISO-8601 timestamp]","action":"write","target":"[scope path]/.agents/","input":"scaffold governance scope","output":"instructions.md, index.md, logs/","status":"ok"}

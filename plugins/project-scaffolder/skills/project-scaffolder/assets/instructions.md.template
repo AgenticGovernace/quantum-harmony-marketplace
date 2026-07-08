@@ -1,0 +1,51 @@
+# Governance — [SCOPE NAME]
+
+> This file is the **governance layer** for this scope: `[this directory]` and everything
+> beneath it. Any agent that operates here inherits these rules. They set the minimum
+> requirements for how work is done and reviewed — not the mechanics of *how* an agent
+> thinks, but the boundaries it must respect.
+
+## Authority
+
+These rules are **authoritative for this scope and are not to be superseded by an individual
+agent.** An agent may bring its own logic and specialization, but where its behavior would
+differ from what's written here, that difference is a **maintainer decision** — raised and
+hashed out with the human maintainer, not self-authorized. This is what lets work be
+reviewed with confidence: the rules are stable, so deviations are visible.
+
+## Scope
+
+- **Governs:** `[this directory]` and all subdirectories, unless a nested `.agents/`
+  narrows or extends these rules for a smaller scope.
+- **Inherits from:** `[parent .agents/ scope, or "none — this is the root scope"]`.
+  Nested scopes stack: a child `.agents/instructions.md` adds domain-specific rules on top
+  of its parents; it does not silently overrule them.
+
+## Baseline rules (replace with rules that fit this scope)
+
+- Make the smallest correct change; prefer narrow edits over broad rewrites.
+- Read a file (and check for uncommitted local work) before editing it — never clobber
+  unrelated in-progress work.
+- Match the surrounding idiom (language, naming, comment density) of the code you touch.
+- Do not cross trust boundaries or touch secrets/credentials (`[.env*, keys, tokens…]`)
+  without an explicit maintainer decision.
+- Stay within the mission of the agent you are; out-of-scope requests are flagged and
+  halted, not improvised.
+- When unsure, ask the maintainer rather than assume.
+
+## Review & provenance
+
+- Action trail for this scope lives in `logs/action-log.jsonl` (one JSON line per
+  read / write / execute / tool call).
+- Reflection summaries live in `logs/reflection-log.md`, appended on a cadence and read
+  back as memory.
+- Surface any log-write failure instead of continuing silently. For line-item parent/child
+  provenance, adopt the **atp-provenance-logging** skill.
+
+## How agents attach to this scope
+
+Individual agents are defined with the **agent-definition** skill. Each agent reads the
+nearest `.agents/instructions.md` up the tree (this file, or a parent) as its governance
+context, then writes its own card to `agents/<AgentName>/AGENTS.md`. This scaffold exists
+*before* those agents and shapes how they behave; the agents fill in the "how," this file
+holds the "must."

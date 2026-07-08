@@ -1,0 +1,47 @@
+/**
+ * mcp/tools/index.cjs
+ *
+ * Aggregates all tool modules into a single registry consumed by the MCP
+ * server. Each tool exports `{ name, description, inputSchema, handler }`.
+ */
+
+'use strict';
+
+const translate = require('./translate.cjs');
+const toAtp = require('./to-atp.cjs');
+const toPlatformPost = require('./to-platform-post.cjs');
+const kbSearch = require('./kb-search.cjs');
+const kbWrite = require('./kb-write.cjs');
+const getVoiceModel = require('./get-voice-model.cjs');
+const getSkill = require('./get-skill.cjs');
+const generateText = require('./generate-text.cjs');
+const transcribeAudio = require('./transcribe-audio.cjs');
+const generateVideo = require('./generate-video.cjs');
+
+const ALL_TOOLS = [
+  translate,
+  toAtp,
+  toPlatformPost,
+  kbSearch,
+  kbWrite,
+  getVoiceModel,
+  getSkill,
+  generateText,
+  transcribeAudio,
+  generateVideo,
+];
+
+/**
+ * Builds a name → tool lookup from the registered tool modules.
+ *
+ * @returns {Record<string, {name: string, description: string, inputSchemaZod: object, annotations: object, handler: Function}>}
+ */
+const buildToolRegistry = () => {
+  const registry = Object.create(null);
+  for (const tool of ALL_TOOLS) {
+    registry[tool.name] = tool;
+  }
+  return registry;
+};
+
+module.exports = { ALL_TOOLS, buildToolRegistry };

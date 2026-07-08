@@ -1,0 +1,22 @@
+# Reflection Log — [SCOPE NAME]
+
+Cadence summaries appended every [N] actions or at task end, and read back at task start as
+memory for this scope. Newest entries at the bottom.
+
+Format per entry:
+
+```
+## <date> — <task short name>
+- Attempted: <what>
+- Assumptions: <any necessary assumptions, or "none">
+- Drift check: <stayed within scope governance? note anything that drifted>
+- Open threads: <unfinished items, or "none">
+```
+
+---
+
+## [date] — scaffold
+- Attempted: governance scope initialized (.agents/ created); no work performed yet.
+- Assumptions: none.
+- Drift check: within governance.
+- Open threads: none.

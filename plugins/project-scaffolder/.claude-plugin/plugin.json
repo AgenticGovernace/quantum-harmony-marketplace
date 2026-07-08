@@ -1,0 +1,18 @@
+{
+  "name": "project-scaffolder",
+  "version": "1.0.0",
+  "description": "Scaffold the governance frame for a project or subfolder: a .agents/ layer with instructions.md (immutable scope rules), a per-directory index.md, and a seeded logs/ dir for provenance and reflection. Stackable and directory-scoped.",
+  "author": {
+    "name": "Quantum Harmony LLC"
+  },
+  "homepage": "https://artemiscity.com",
+  "license": "Apache-2.0",
+  "keywords": [
+    "scaffolding",
+    "governance",
+    "agents",
+    "project-setup",
+    "provenance",
+    "multi-agent"
+  ]
+}

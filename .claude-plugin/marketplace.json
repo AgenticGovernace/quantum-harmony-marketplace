@@ -1,25 +1,22 @@
 {
   "name": "quantum-harmony",
   "owner": {
-    "name": "Quantum Harmony LLC",
-    "email": "prinston@artemiscity.com"
+    "name": "Quantum Harmony LLC"
   },
   "plugins": [
     {
       "name": "artemis-transmission-protocol",
       "source": "./plugins/artemis-transmission-protocol",
       "description": "Structured agent-to-agent communication via the Artemis Transmission Protocol (ATP).",
-      "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" },
-      "license": "Apache-2.0"
+      "version": "1.1.0",
+      "author": { "name": "Quantum Harmony LLC" }
     },
     {
       "name": "atp-provenance-logging",
       "source": "./plugins/atp-provenance-logging",
       "description": "Line-item action provenance for ATP agents (parent + child prov_id in agent_logs; halt-and-alert on log failure).",
       "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" },
-      "license": "Apache-2.0"
+      "author": { "name": "Quantum Harmony LLC" }
     },
     {
       "name": "agent-scaffolder",
@@ -29,12 +26,25 @@
       "author": { "name": "Quantum Harmony LLC" }
     },
     {
+      "name": "agent-definition",
+      "source": "./plugins/agent-definition",
+      "description": "Define an agent's Agent Card and write it to agents/NAME/AGENTS.md, inheriting parent .agents governance.",
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
+    },
+    {
+      "name": "project-scaffolder",
+      "source": "./plugins/project-scaffolder",
+      "description": "Scaffold a project's .agents/ governance frame (instructions.md, index.md, seeded logs/). Stackable and directory-scoped.",
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
+    },
+    {
       "name": "ramble-on",
       "source": "./plugins/ramble-on",
-      "description": "Signal translation layer for fast, non-linear thinkers. Converts raw rambles, voice-note transcripts, and stream-of-consciousness input into polished notes, ATP blocks, or platform-ready posts — with a bundled MCP server for Notion KB context and voice-model retrieval.",
-      "version": "1.1.0",
-      "author": { "name": "Quantum Harmony LLC" },
-      "license": "Apache-2.0"
+      "description": "Signal-translation layer: raw brain dumps to structured, voice-preserving output (ATP, platform posts, clean notes).",
+      "version": "1.0.0",
+      "author": { "name": "Quantum Harmony LLC" }
     }
   ]
 }
