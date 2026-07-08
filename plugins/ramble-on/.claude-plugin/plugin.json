@@ -1,6 +1,6 @@
 {
   "name": "ramble-on",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Signal-translation layer for fast, non-linear thinkers: turn brain dumps, dictation, and stream-of-consciousness into structured, voice-preserving output (ATP, platform posts, clean notes). Bundles the ramble MCP server assets.",
   "author": {
     "name": "Quantum Harmony LLC"

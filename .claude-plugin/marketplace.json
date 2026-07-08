@@ -1,48 +1,62 @@
 {
   "name": "quantum-harmony-marketplace",
-  "owner": { "name": "Quantum Harmony LLC" },
+  "owner": {
+    "name": "Quantum Harmony LLC"
+  },
   "plugins": [
     {
       "name": "artemis-transmission-protocol",
       "source": "./plugins/artemis-transmission-protocol",
       "description": "Structured agent-to-agent communication via the Artemis Transmission Protocol (ATP).",
       "version": "1.1.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     },
     {
       "name": "atp-provenance-logging",
       "source": "./plugins/atp-provenance-logging",
       "description": "Line-item action provenance for ATP agents (parent + child prov_id in agent_logs; halt-and-alert on log failure).",
       "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     },
     {
       "name": "agent-scaffolder",
       "source": "./plugins/agent-scaffolder",
       "description": "Scaffold AI agents from an Agent Card; generates system prompts and index.md / AGENTS.md / .codex/instructions.md.",
       "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     },
     {
       "name": "agent-definition",
       "source": "./plugins/agent-definition",
       "description": "Define an agent's Agent Card and write it to agents/NAME/AGENTS.md, inheriting parent .agents governance.",
       "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     },
     {
       "name": "project-scaffolder",
       "source": "./plugins/project-scaffolder",
       "description": "Scaffold a project's .agents/ governance frame (instructions.md, index.md, seeded logs/). Stackable and directory-scoped.",
       "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     },
     {
       "name": "ramble-on",
       "source": "./plugins/ramble-on",
       "description": "Signal-translation layer: raw brain dumps to structured, voice-preserving output (ATP, platform posts, clean notes).",
-      "version": "1.0.0",
-      "author": { "name": "Quantum Harmony LLC" }
+      "version": "1.2.0",
+      "author": {
+        "name": "Quantum Harmony LLC"
+      }
     }
   ]
 }

@@ -28,7 +28,7 @@ const {
 const { CONFIG } = require('./env.cjs');
 const { ALL_TOOLS } = require('./tools/index.cjs');
 
-const SERVER_INFO = { name: 'ramble-on', version: '1.0.0' };
+const SERVER_INFO = { name: 'ramble-on', version: '1.2.0' };
 
 /**
  * Default response wrapper. Tools may override this by exporting

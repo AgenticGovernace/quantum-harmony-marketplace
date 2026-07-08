@@ -2,7 +2,7 @@
   "mcpServers": {
     "ramble-on": {
       "command": "node",
-      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/bin/stdio.cjs"],
+      "args": ["${CLAUDE_PLUGIN_ROOT}/mcp/dist/stdio.bundle.cjs"],
       "env": {
         "NOTION_API_KEY": "${NOTION_API_KEY}",
         "GEMINI_API_KEY": "${GEMINI_API_KEY}",

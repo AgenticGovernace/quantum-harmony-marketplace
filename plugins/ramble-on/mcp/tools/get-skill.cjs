@@ -47,7 +47,16 @@ const resolveSkillPath = () => {
     );
     return packagedPath;
   }
-  return path.join(__dirname, '..', '..', '..', 'ramble-on', SKILL_FILENAME);
+  // Plugin root is two levels up from both mcp/tools/ (source) and
+  // mcp/dist/ (esbuild bundle), so this resolves identically in both.
+  return path.join(
+    __dirname,
+    '..',
+    '..',
+    'skills',
+    'ramble-on',
+    SKILL_FILENAME,
+  );
 };
 
 /**
