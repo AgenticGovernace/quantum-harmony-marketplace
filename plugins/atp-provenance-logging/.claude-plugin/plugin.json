@@ -2,9 +2,9 @@
   "name": "atp-provenance-logging",
   "version": "1.0.0",
   "description": "Line-item action provenance for ATP agents: one parent prov_id per prompt, a child entry per read/write/execute/tool-call in agent_logs, with halt-and-alert if a log write fails.",
-  "author": {"name": "Quantum Harmony LLC", "email": ""},
+  "author": {"name": "Quantum Harmony LLC", "email": "prinston@artemiscity.com"},
   "homepage": "https://artemiscity.com",
-  "license": ["Apache-2.0"],
+  "license": "Apache-2.0",
   "keywords": [ 
     "atp",
     "provenance",
@@ -12,6 +12,5 @@
     "agent-logs",
     "governance",
     "observability"
-  ]   
-}
-  
+  ]
+} 

@@ -1,7 +1,8 @@
 {
   "name": "quantum-harmony",
   "owner": {
-    "name": "Quantum Harmony LLC"
+    "name": "Quantum Harmony LLC",
+    "email": "prinston@artemiscity.com"
   },
   "plugins": [
     {
@@ -10,7 +11,7 @@
       "description": "Structured agent-to-agent communication via the Artemis Transmission Protocol (ATP).",
       "version": "1.0.0",
       "author": { "name": "Quantum Harmony LLC" },
-      "license": ["Apache 2.0"]
+      "license": "Apache 2.0"
 
     },
     {
@@ -19,7 +20,7 @@
       "description": "Line-item action provenance for ATP agents (parent + child prov_id in agent_logs; halt-and-alert on log failure).",
       "version": "1.0.0",
       "author": { "name": "Quantum Harmony LLC" },
-       "license": ["Apache 2.0"]
+       "license": "Apache 2.0"
 
     },
     {
@@ -43,10 +44,10 @@
                         The skill uses all available context — the Notion KB, project knowledge, past
                         conversations, uploaded files — to preserve the user's voice while translating
                         their signal. When in doubt, use this skill. Raw → polished is always the direction.",
-       "version": 0.1.0,
+       "version": "1.0.0",  
        "author": {"name":"Quantum Harmony LLC"},
-       "license": ["Apache 2.0"]
-
+       "license":"Apache 2.0",  
+        
     }
 
   ]

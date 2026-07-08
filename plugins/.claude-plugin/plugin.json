@@ -3,10 +3,9 @@
   "version": "1.1.0",
   "description": "Signal translation layer for fast, non-linear thinkers. Converts raw rambles, voice-note transcripts, and stream-of-consciousness input into polished notes, ATP blocks, or platform-ready posts — with a bundled MCP server for Notion KB context and voice-model retrieval.",
   "author": {
-    "name": "Quantum Harmony LLC",
-    "email": "prinston@artemiscity.com"
+    "name": "Quantum Harmony LLC"
   },
-  "license": "Apache-2.0",
+  "license": "Apache 2.0",
   "keywords": ["writing", "translation", "atp", "notion", "voice", "publishing"],
   "homepage": "https://github.com/AgenticGovernace/ramble_on",
   "repository": "https://github.com/AgenticGovernace/quantum-harmony",

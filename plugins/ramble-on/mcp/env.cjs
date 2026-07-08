@@ -52,14 +52,12 @@ const CONFIG = {
   models: {
     gemini: process.env.GEMINI_TEXT_MODEL || 'gemini-2.5-pro',
     openai: process.env.OPENAI_TEXT_MODEL || 'gpt-4.1-mini',
-    anthropic:
-      process.env.ANTHROPIC_TEXT_MODEL || 'claude-3-5-sonnet-latest',
+    anthropic: process.env.ANTHROPIC_TEXT_MODEL || 'claude-3-5-sonnet-latest',
   },
   notion: {
     apiBase: 'https://api.notion.com/v1',
     version: '2022-06-28',
-    rootPage:
-      process.env.RAMBLE_NOTION_ROOT || '2fe5c4d6-320e-8044-8797-d11505ac452d',
+    rootPage:process.env.RAMBLE_NOTION_ROOT || '2fe5c4d6-320e-8044-8797-d11505ac452d',
   },
 };
 
