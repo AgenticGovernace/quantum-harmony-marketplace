@@ -11,5 +11,9 @@
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@google/genai": "^1.0.0",
     "zod": "^3.23.0"
+  },
+  "allowScripts": {
+    "@google/genai@1.52.0": true,
+    "protobufjs@7.6.5": true
   }
 }

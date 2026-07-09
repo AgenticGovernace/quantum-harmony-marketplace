@@ -118,19 +118,36 @@ const generateWithAnthropic = async (prompt) => {
   return text;
 };
 
+const runProvider = (provider, prompt, geminiConfig) => {
+  if (provider === 'gemini') return generateWithGemini(prompt, geminiConfig);
+  if (provider === 'openai') return generateWithOpenAI(prompt);
+  return generateWithAnthropic(prompt);
+};
+
 /**
- * Generates text through the requested provider. `geminiConfig` is
- * forwarded to the Gemini SDK to enable structured-output flows; non-Gemini
- * providers ignore it.
+ * Generates text through the requested provider, falling back to Anthropic
+ * when the primary provider fails (auth error, 404, quota/429, empty
+ * response) and an Anthropic key is configured. `geminiConfig` is forwarded
+ * to the Gemini SDK for structured-output flows; other providers ignore it.
  *
  * @param {{provider?: string, prompt: string, geminiConfig?: object}} options
  * @returns {Promise<string>}
  */
 const generateText = async ({ provider, prompt, geminiConfig }) => {
   const selected = normalizeProvider(provider || CONFIG.defaultProvider);
-  if (selected === 'gemini') return generateWithGemini(prompt, geminiConfig);
-  if (selected === 'openai') return generateWithOpenAI(prompt);
-  return generateWithAnthropic(prompt);
+  try {
+    return await runProvider(selected, prompt, geminiConfig);
+  } catch (primaryError) {
+    // Only fall back when the primary wasn't already Anthropic and a key exists.
+    if (selected !== 'anthropic' && getApiKey('anthropic')) {
+      process.stderr.write(
+        `[ramble-on] ${selected} text generation failed (${primaryError.message}); ` +
+          `falling back to Anthropic.\n`,
+      );
+      return generateWithAnthropic(prompt);
+    }
+    throw primaryError;
+  }
 };
 
 const resolveSpeechProvider = (provider) => {
