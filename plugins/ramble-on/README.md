@@ -34,6 +34,16 @@ cd <plugin-install-path>/mcp && npm install
 sh bin/seed-keychain.sh        # macOS: store API keys in Keychain (recommended)
 ```
 
+The seed script validates each key as you paste it — showing a masked
+fingerprint (scheme prefix + length, never the secret) and flagging a bad
+paste (e.g. a captured `export …=` line, wrong prefix, stray whitespace)
+before it lands in the keychain. Inspect a value at any time without
+storing it:
+
+```bash
+printf '%s' "$MY_KEY" | node bin/inspect-key.cjs ANTHROPIC_API_KEY
+```
+
 ## Security model
 
 The server runs as a **sidecar**: spawned by the MCP client via `mcp/bin/sidecar.sh`, stdio-only JSON-RPC, torn down when the client exits. No listening port, no localhost attack surface, no lingering process.
@@ -52,9 +62,19 @@ Key values are never echoed, logged, or passed as argv. The `http.cjs` transport
 |---|---|---|
 | `NOTION_API_KEY` | Yes (tier 1) | Notion KB + voice model access |
 | `GEMINI_API_KEY` | Yes (default provider) | Translation engine |
-| `OPENAI_API_KEY` / `ANTHROPIC_API_KEY` | No | Alternate providers |
+| `ANTHROPIC_API_KEY` | Recommended | Automatic fallback provider (see below) |
+| `OPENAI_API_KEY` | No | Alternate provider |
 | `AI_PROVIDER` | No | Override the default provider (not a secret) |
 | `RAMBLE_NOTION_ROOT` | No | Override the default Ramble On root page ID (not a secret) |
+
+### Provider fallback
+
+Text generation runs on the selected provider (`AI_PROVIDER`, default Gemini).
+If that provider fails — auth error, retired model / 404, or a quota `429` —
+the server transparently retries on **Anthropic** when `ANTHROPIC_API_KEY` is
+set, instead of failing the request. Keeping an Anthropic key seeded means a
+single degraded provider doesn't take translation down. The fallback logs the
+switch to stderr and never touches stdout (the JSON-RPC channel).
 
 ## Graceful degradation
 
@@ -68,6 +88,21 @@ The skill works at three tiers — the server is an amplifier, not a dependency:
 
 - Node 18+
 - Claude Code with plugin support
+
+## Changelog
+
+### 1.3.0
+- **Fix:** Anthropic text generation returned `404` — the pinned model
+  `claude-3-5-sonnet-latest` retired 2026-02-19. Now uses `claude-opus-4-8`
+  (override with `ANTHROPIC_TEXT_MODEL`).
+- **Add:** Automatic provider fallback to Anthropic when the primary provider
+  fails (auth error, 404, or quota `429`).
+- **Add:** Malformation-visible key input. The seed script and a new
+  `bin/inspect-key.cjs` report a masked fingerprint plus structural issues so a
+  bad paste is caught without exposing the secret; the server also warns on
+  stderr at spawn if a stored key is malformed.
+- **Chore:** Removed the legacy root `plugins/.mcp.json` (superseded by the
+  sidecar launcher in this plugin's `.mcp.json`).
 
 ## Attribution
 
