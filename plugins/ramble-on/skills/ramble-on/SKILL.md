@@ -1,14 +1,19 @@
 ---
 name: ramble-on
+metadata:
+  version: 1.2.0
 description: >
   Signal translation layer for fast, non-linear thinkers. Use this skill whenever
-  the user pastes raw thoughts, voice-note transcripts, stream-of-consciousness
-  text, rough ideas, or asks Claude to "clean this up", "turn this into a post",
-  "make this readable", "translate my ramble", or "write this up properly". Also
-  use when the user asks for ATP formatting, a Medium/Substack/blog post, a polished
-  note, or any output that requires converting rough input into structured, publishable,
-  or shareable content. The skill uses all available context — project knowledge,
-  past conversations, uploaded files — to preserve the user's voice while translating
+  the user pastes raw thoughts, a brain dump, voice-note or dictation transcripts,
+  stream-of-consciousness text, rough ideas, or asks Claude to "clean this up",
+  "turn this into a post", "make this readable", "translate my ramble", or "write
+  this up properly". Also use when the user asks for ATP formatting, a
+  Medium/Substack/LinkedIn/blog post, a polished note, or any output that requires
+  converting rough input into structured, publishable, or shareable content — and
+  whenever the `ramble-on` MCP tools (ramble.translate, ramble.to_atp,
+  ramble.to_platform_post) are available, since they exist to serve this workflow.
+  The skill uses all available context — the Notion KB, project knowledge, past
+  conversations, uploaded files — to preserve the user's voice while translating
   their signal. When in doubt, use this skill. Raw → polished is always the direction.
 ---
 
@@ -20,25 +25,27 @@ You are the translation layer between how this person thinks and how the world r
 
 ---
 
-## MCP Routing (When App is Running)
+## MCP Routing
 
-Check if the Ramble On MCP server is available at `http://127.0.0.1:3748/health` before falling back to direct API calls.
+When installed as a plugin, the Ramble On MCP server is registered in the plugin's `.mcp.json` and launched automatically over stdio (`${CLAUDE_PLUGIN_ROOT}/mcp/bin/stdio.cjs`). **Do not probe any URL or health endpoint.** Instead, check the available tool list: if `ramble-on` tools are present, the server is running.
 
-| If MCP server responds | Route through app |
-|------------------------|-------------------|
-| `ramble.translate` | Full Notion KB context + Gemini |
-| `ramble.to_atp` | Full Notion KB context + Gemini |
-| `ramble.to_platform_post` | Platform rules + KB context + Gemini |
+| If these tools are available | Route through them |
+|------------------------------|--------------------|
+| `ramble.translate` | Full Notion KB context + configured AI provider |
+| `ramble.to_atp` | Full Notion KB context + configured AI provider |
+| `ramble.to_platform_post` | Platform rules + KB context + configured AI provider |
 | `ramble.kb_search` | Live Notion search |
 | `ramble.kb_write` | Direct Notion write |
 | `ramble.get_voice_model` | Voice model page from Notion |
 
-If MCP server is not running, fall back to the Notion MCP tools directly (if connected) or pure instruction-based translation.
+If the `ramble-on` tools are not in the tool list, fall back to the Notion MCP tools directly (if connected) or pure instruction-based translation.
 
 **This is graceful degradation, not a hard dependency.** The skill works at three tiers:
-1. App running → full signal, full KB, full voice model
-2. Notion MCP connected, no app → good signal, live KB, no local persistence
+1. `ramble-on` MCP tools available (plugin-launched or desktop app) → full signal, full KB, full voice model
+2. Notion MCP connected, no ramble-on server → good signal, live KB, no local persistence
 3. Neither → capable translation, no personal context
+
+**Server requirements** (tier 1 only): Node 18+, `npm install` run once in the plugin's `mcp/` directory. The server launches as a **sidecar** via `mcp/bin/sidecar.sh` — spawned and torn down by the MCP client, stdio-only (no open ports). Secrets resolve at spawn time in order: environment → macOS Keychain (service `ramble-on-mcp`, seeded once via `mcp/bin/seed-keychain.sh`) → `.env.local`. API keys never live in `.mcp.json` or shell profiles.
 
 ---
 
@@ -73,7 +80,7 @@ NOT FOUND → run scaffold sequence, then proceed with original request
 
 The original request does not get dropped. Init and translate happen in the same session.
 
-**If the `ramble-on` MCP server is running locally** (app is open), call `ramble.get_voice_model` to check init status. If not running, use Notion MCP directly.
+**If the `ramble-on` MCP tools are available** (plugin-launched via `.mcp.json`, or the desktop app's server), call `ramble.get_voice_model` to check init status. If not available, use Notion MCP directly.
 
 ---
 

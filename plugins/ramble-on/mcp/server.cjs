@@ -153,14 +153,6 @@ const startMcpServer = async () => {
     }
 
     if (pathname === '/mcp' || pathname === '/') {
-      if (req.method !== 'POST') {
-        // Stateless transport: no standalone SSE stream (GET) or session
-        // to terminate (DELETE), so per the Streamable HTTP spec answer 405
-        // instead of letting the SDK reject the request with an error.
-        res.writeHead(405, { Allow: 'POST, OPTIONS' });
-        res.end();
-        return;
-      }
       try {
         await handleMcpRequest(req, res);
       } catch (err) {

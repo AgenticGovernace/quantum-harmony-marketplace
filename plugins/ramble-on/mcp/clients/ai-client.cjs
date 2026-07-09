@@ -21,7 +21,7 @@ const {
 const TRANSCRIPTION_MODELS = {
   gemini:
     process.env.GEMINI_TRANSCRIPTION_MODEL || CONFIG.models.gemini,
-  openai: process.env.OPENAI_TRANSCRIPTION_MODEL || 'whisper-1',
+  openai: process.env.OPENAI_TRANSCRIPTION_MODEL || 'gpt-4o-mini-transcribe',
 };
 
 const VIDEO_MODEL =

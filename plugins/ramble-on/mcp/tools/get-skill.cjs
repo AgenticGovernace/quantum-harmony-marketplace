@@ -17,15 +17,7 @@ const fsp = require('fs/promises');
 // TODO: relocate result.cjs into mcp/lib/ when MCP is fully extracted into a
 // standalone npm package. Cross-folder require kept for now to avoid file
 // duplication during the sidecar pivot.
-// Inline Result helpers to avoid missing/broken external imports
-const ok = (value) => ({ ok: true, value });
-const err = (error) => ({ ok: false, error });
-const assertResult = (r) => {
-  if (!r || typeof r !== 'object' || typeof r.ok !== 'boolean') {
-    throw new Error('Invalid Result object');
-  }
-  return r;
-};
+const { ok, err, assertResult } = require('../lib/result.cjs');
 
 const SKILL_FILENAME = 'SKILL.md';
 
@@ -47,16 +39,7 @@ const resolveSkillPath = () => {
     );
     return packagedPath;
   }
-  // Plugin root is two levels up from both mcp/tools/ (source) and
-  // mcp/dist/ (esbuild bundle), so this resolves identically in both.
-  return path.join(
-    __dirname,
-    '..',
-    '..',
-    'skills',
-    'ramble-on',
-    SKILL_FILENAME,
-  );
+  return path.join(__dirname, '..', '..', '..', 'ramble-on', SKILL_FILENAME);
 };
 
 /**
