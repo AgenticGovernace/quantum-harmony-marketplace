@@ -54,7 +54,7 @@ Secrets never live in `.mcp.json`, shell profiles, or the repo. The sidecar reso
 2. **macOS Keychain** — service `ramble-on-mcp`, seeded once with `mcp/bin/seed-keychain.sh`, rotated by re-running it
 3. **`.env.local`** — gitignored fallback next to the server code (Linux/Windows)
 
-Key values are never echoed, logged, or passed as argv. The `http.cjs` transport (loopback `:3748`) remains for the desktop app's in-process use and is **not** registered by this plugin.
+Key values are never echoed, logged, or passed as argv. At seed time, `mcp/bin/seed-keychain.sh` pipes each pasted value through `mcp/bin/inspect-key.cjs`, which reports a masked fingerprint (scheme prefix + length only) and flags a malformed paste — a captured `export …=` line, wrong prefix, or stray whitespace — before it is stored. The same check runs at server spawn and warns on stderr if a stored key is malformed. The `http.cjs` transport (loopback `:3748`) remains for the desktop app's in-process use and is **not** registered by this plugin.
 
 ## Configuration
 

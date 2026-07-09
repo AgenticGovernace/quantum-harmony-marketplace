@@ -1,7 +1,7 @@
 ---
 name: ramble-on
 metadata:
-  version: 1.2.0
+  version: 1.3.0
 description: >
   Signal translation layer for fast, non-linear thinkers. Use this skill whenever
   the user pastes raw thoughts, a brain dump, voice-note or dictation transcripts,
