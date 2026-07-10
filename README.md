@@ -14,7 +14,7 @@ plugin lives under `plugins/<name>/` with its own `.claude-plugin/plugin.json`.
 | `agent-scaffolder` | 1.0.0 | Scaffold AI agents from an Agent Card; generates system prompts + `index.md` / `AGENTS.md` / `.codex/instructions.md`. |
 | `agent-definition` | 1.0.0 | Build an Agent Card and write it to `agents/NAME/AGENTS.md`, inheriting parent `.agents` governance. |
 | `project-scaffolder` | 1.0.0 | Scaffold a project's `.agents/` governance frame (`instructions.md`, `index.md`, seeded `logs/`). |
-| `ramble-on` | 1.0.0 | Signal-translation: raw brain dumps to structured, voice-preserving output; bundles the ramble MCP server. |
+| `ramble-on` | 1.3.0 | Signal-translation: raw brain dumps to structured, voice-preserving output; bundles the ramble MCP server. |
 
 **The stack:** `project-scaffolder` lays the governance frame → `agent-definition` / `agent-scaffolder`
 define agents → `artemis-transmission-protocol` carries messages between them → `atp-provenance-logging`
